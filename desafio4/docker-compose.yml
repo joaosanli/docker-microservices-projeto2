@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  service_a:
+    build: ./service_a
+    container_name: desafio4_service_a
+    ports:
+      - "5001:5001"
+    networks:
+      - desafio4_net
+
+  service_b:
+    build: ./service_b
+    container_name: desafio4_service_b
+    ports:
+      - "5002:5002"
+    depends_on:
+      - service_a
+    networks:
+      - desafio4_net
+
+networks:
+  desafio4_net:
+    driver: bridge
